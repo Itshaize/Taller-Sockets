@@ -7,7 +7,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent / "Actividad3_Rafaga"))
 from actividad3 import validar_orden, ejecutar_carga_local
 
-HOST = "127.0.0.1"
+HOST = sys.argv[2] if len(sys.argv) > 2 else "127.0.0.1"
 PUERTO = 5002
 
 nombre = sys.argv[1] if len(sys.argv) > 1 else "worker1"
