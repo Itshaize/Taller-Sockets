@@ -124,6 +124,19 @@ def atender_worker(conexion, direccion):
 
             elif tipo == "resultado":
                 print(f"\nResultado de {nombre}: {mensaje.get('datos')}")
+            elif tipo in ("STRESS_READY", "STRESS_RESULT", "STRESS_ERROR"):
+                task_id = mensaje.get("task_id")
+                with bloqueo:
+                    tarea = tareas.get(task_id)
+                    if tarea and nombre in tarea["esperados"]:
+                        if tipo == "STRESS_READY":
+                            tarea["listos"].add(nombre)
+                        elif tipo == "STRESS_RESULT":
+                            tarea["resultados"][nombre] = mensaje
+                        else:
+                            tarea["errores"][nombre] = mensaje.get("error", "Error")
+                print(f"\n{tipo} de {nombre}: {task_id}")
+
 
     except (OSError, ValueError, KeyError) as error:
         print(f"\nError de conexion: {error}")
@@ -159,6 +172,7 @@ def iniciar_servidor():
     try:
         servidor.bind((HOST, PUERTO))
         servidor.listen()
+        threading.Thread(target=recibir_latidos, daemon=True).start()
         print(f"Master TCP escuchando en {HOST}:{PUERTO}")
 
         hilo = threading.Thread(
