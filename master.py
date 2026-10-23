@@ -8,7 +8,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent / "Actividad3_Rafaga"))
 from actividad3 import crear_orden, resumir_reportes
 
-HOST = "127.0.0.1"
+HOST = "0.0.0.0"
 PUERTO = 5002
 
 workers = {}
