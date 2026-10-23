@@ -96,3 +96,29 @@ El codigo de Isma esta en [Actividad2_TCP](Actividad2_TCP/README.md), con el ser
 ## Actividad 3: Rafaga sincronizada (Dio)
 
 Se incorpora el modulo de coordinacion, prueba de carga exclusivamente local y reportes en [Actividad3_Rafaga](Actividad3_Rafaga/README.md). Puede probarse con un Master y dos Workers de demostracion, de manera independiente. La integracion final con los modulos UDP y TCP del equipo queda pendiente. No ejecutar simultaneamente los dos Masters TCP de demostracion, pues usan el puerto 5002.
+
+## Version integrada para el taller
+
+Los archivos `master.py` y `worker.py` de la raiz unen las tres actividades. Los archivos de las carpetas `Actividad1_UDP`, `Actividad2_TCP` y `Actividad3_Rafaga` se conservan para documentar lo que hizo cada integrante.
+
+**Requisitos:** Python 3.10 o superior; no se necesitan paquetes externos. Usar cuatro terminales desde la raiz del repositorio:
+
+```bash
+# Terminal 1: servidor de pruebas local de Dio
+python3 Actividad3_Rafaga/objetivo_local.py
+
+# Terminal 2: Master integrado
+python3 master.py
+
+# Terminal 3: Worker uno
+python3 worker.py worker1
+
+# Terminal 4: Worker dos
+python3 worker.py worker2
+```
+
+En el menu de Master, usar **1** para comprobar registro UDP y TCP, **2** para enviar comandos (STATUS, FETCH_LOGS o EXEC_TASK) y **4** para ejecutar la prueba de carga local coordinada de 1 a 10 segundos. La prueba solo utiliza 127.0.0.1:9100 (TCP) y 127.0.0.1:9101 (UDP). Para verificar la deteccion de caidas, detener un Worker con Ctrl+C y observar el registro UDP tras unos seis segundos.
+
+**Puertos:** UDP 5001 para heartbeats, TCP 5002 para control, 9100/9101 para el objetivo local. No ejecutar simultaneamente los servidores `Actividad2_TCP/tcp_manager.py` ni `Actividad3_Rafaga/demo_master.py` con `master.py`, porque utilizan TCP 5002.
+
+**Integracion:** para una tarea sincronizada se seleccionan Workers registrados tanto en TCP como en UDP, se envia una orden con un instante de inicio comun y se recogen reportes de carga. El modulo de Dio mantiene sus limites de carga para evitar trafico externo. En equipos distintos, la restriccion al objetivo 127.0.0.1 significa que cada Worker prueba su propio equipo; la demostracion recomendada se hace con todos los procesos en la misma maquina. Quedan pendientes las pruebas finales de todo el grupo y sus capturas: no se afirma aqui que el sistema integrado haya sido probado en el equipo del alumno.
