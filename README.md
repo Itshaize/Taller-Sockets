@@ -9,7 +9,7 @@ Este repositorio reunira las tres actividades del taller de sockets. Por ahora s
 
 - **MAU - Actividad 1 (implementada):** heartbeats UDP, registro de workers, respuesta ACK y deteccion de desconexiones.
 - **Isma - Actividad 2 (implementacion inicial en `Actividad2_TCP/`, pendiente de integracion):** servidor TCP multihilo y comunicacion de comandos/resultados.
-- **Dio - Actividad 3 (pendiente de integracion):** coordinacion de tareas, carga controlada y reportes.
+- **Dio - Actividad 3 (implementacion inicial en Actividad3_Rafaga/, pendiente de integracion):** coordinacion de tareas, carga controlada y reportes.
 
 ## Actividad 1: UDP
 
@@ -92,3 +92,7 @@ ACK devuelto por el servidor:
 ## Actividad 2: TCP multihilo (Isma)
 
 El codigo de Isma esta en [Actividad2_TCP](Actividad2_TCP/README.md), con el servidor TCP, los Workers y las instrucciones para probarlos. Utiliza el puerto TCP `5002` para no interferir con el canal UDP `5001` de la Actividad 1. Los comandos de trabajo son simulados y queda pendiente integrar las actividades en los scripts finales.
+
+## Actividad 3: Rafaga sincronizada (Dio)
+
+Se incorpora el modulo de coordinacion, prueba de carga exclusivamente local y reportes en [Actividad3_Rafaga](Actividad3_Rafaga/README.md). Puede probarse con un Master y dos Workers de demostracion, de manera independiente. La integracion final con los modulos UDP y TCP del equipo queda pendiente. No ejecutar simultaneamente los dos Masters TCP de demostracion, pues usan el puerto 5002.

@@ -1,0 +1,28 @@
+TALLER DE SOCKETS — ACTIVIDAD 3 (DIO)
+EVIDENCIA DE PRUEBA LOCAL (DEMO, NO RED FÍSICA DISTRIBUIDA)
+
+Se inició objetivo_local.py; Master TCP en 127.0.0.1:5002; Workers A y B.
+La prueba se realizó con duración 2 segundos y dos Workers.
+
+[MASTER] TCP escuchando en 127.0.0.1:5002
+[MASTER] Conectado: worker-A
+[MASTER] Conectado: worker-B
+[MASTER] BROADCAST_STRESS 7a62a020: 2s, 2 Workers
+[MASTER] worker-A: LISTO para 7a62a020
+[MASTER] worker-B: LISTO para 7a62a020
+[MASTER] worker-A: 24/24 OK | latencia media 0.553 ms
+[MASTER] worker-B: 24/24 OK | latencia media 0.556 ms
+
+==== INFORME DE RENDIMIENTO ====
+Workers esperados: 2; listos: 2; reportados: 2
+workers_con_resultado: 2
+peticiones_enviadas: 48
+peticiones_correctas: 48
+peticiones_fallidas: 0
+tasa_exito_pct: 100.0
+latencia_media_ponderada_ms: 0.555
+diferencia_inicio_ms: 0.0
+================================
+
+Pruebas unitarias: 4 pruebas superadas.
+Valores representativos de una ejecución local y variables entre equipos.
